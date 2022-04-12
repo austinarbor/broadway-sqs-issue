@@ -1,0 +1,21 @@
+version: "3"
+services:
+  elasticmq:
+    image: softwaremill/elasticmq-native:1.3.6
+    ports:
+      - "9325:9325"
+      - "9324:9234"
+  localstack:
+    image: localstack/localstack:0.14.2
+    depends_on:
+      - elasticmq
+    environment: 
+      - AWS_DEFAULT_REGION=us-east-1
+      - EDGE_PORT=4566
+      - SERVICES=sqs
+      - SQS_PROVIDER=elasticmq
+    ports:
+      - '4566:4566'
+    volumes:
+      - "./scripts/init.sh:/docker-entrypoint-initaws.d/init-sqs.sh"
+      - "./scripts/queue-attributes.json:/opt/code/localstack/queue-attributes.json"

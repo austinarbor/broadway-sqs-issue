@@ -1,0 +1,9 @@
+{
+    "DelaySeconds": "0",
+    "FifoQueue": "true",
+    "ContentBasedDeduplication": "true",
+    "VisibilityTimeout": "60",
+    "MaximumMessageSize": "262144",
+    "MessageRetentionPeriod": "604800",
+    "ReceiveMessageWaitTimeSeconds": "10"
+}
